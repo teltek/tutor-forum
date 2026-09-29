@@ -6,5 +6,6 @@ forum:
     MONGODB_HOST: "{{ MONGODB_HOST }}"
     MONGODB_PORT: "{{ MONGODB_PORT }}"
     MONGODB_DATABASE: "{{ FORUM_MONGODB_DATABASE }}"
+    MONGODB_REPLICA_SET: "{{ MONGODB_REPLICA_SET }}"
   restart: unless-stopped
   depends_on: {{ [("elasticsearch", RUN_ELASTICSEARCH), ("mongodb", RUN_MONGODB)]|list_if }}

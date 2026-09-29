@@ -2,6 +2,7 @@ FROM docker.io/ruby:2.5.7-slim-stretch
 MAINTAINER Overhang.IO <contact@overhang.io>
 
 ENV DEBIAN_FRONTEND=noninteractive
+COPY sources.list /etc/apt/sources.list
 RUN apt update && \
   apt upgrade -y && \
   apt install -y git wget autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm-dev
@@ -44,5 +45,6 @@ ENV MONGOID_AUTH_MECH ""
 ENV MONGODB_HOST "mongodb"
 ENV MONGODB_PORT "27017"
 ENV MONGODB_DATABASE "cs_comments_service"
+ENV MONGODB_REPLICA_SET ""
 EXPOSE 4567
 CMD ./bin/unicorn -c config/unicorn_tcp.rb -I '.'
